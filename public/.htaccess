@@ -9,6 +9,15 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+    # Allow direct access to JS and CSS files within the public/assets folder
+    RewriteRule ^public/assets/(.*\.(js|css))$ - [L]
+
+    # Allow direct access to the public/assets folder
+    RewriteRule ^public/assets/ - [L]
+
+    # Allow direct access to the assets folder
+    RewriteRule ^assets/ - [L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
